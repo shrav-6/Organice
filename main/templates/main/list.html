@@ -1,0 +1,34 @@
+{% extends "main/base.html" %}
+{%block title%}
+    View list
+{%endblock%}
+{%block content%}
+    <h1>{{ls.name}}</h1>
+    <form method="post" action="#">
+        {% csrf_token %}
+
+        {% for item in ls.item_set.all %}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <div class = "input-group-text" style="height:40px">
+                    {%if item.complete == False %}            
+                        <input type="checkbox" value="clicked" name="c{{item.id}}">
+                    {%else%}            
+                        <input type="checkbox" value="clicked" name="c{{item.id}}" checked>
+                    {%endif%}   
+                    </div>             
+                </div>
+                <input type="text" value="{{item.text}}" class="form-control" name="item-text{{item.id}}">
+            </div>
+        {% endfor %}
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">                
+                <Button type="submit" name = "newItem" value="newItem" class="btn btn-success">AddItem</Button>                
+            </div>
+                <input type="text" name="new">
+            </div>
+                <Button type="submit" name = "save" value="save" class="btn btn-success">Save</Button>
+        </div>
+    </form>
+{%endblock%}
