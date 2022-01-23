@@ -6,9 +6,12 @@
     <h1>{{ls.name}}</h1>
     <form method="post" action="#">
         {% csrf_token %}
-
         {% for item in ls.item_set.all %}
             <div class="input-group mb-3">
+                <span class="input-group-text">
+                <button type="submit" name="d{{item.id}}" value="delete" class="btnimage" style="border: 0; outline:0"><img src="https://cdn4.iconfinder.com/data/icons/controls-add-on-flat/48/Contols_-_Add_On-35-512.png" alt="del" width="20" height="20"></button>
+               
+            </span>
                 <div class="input-group-prepend">
                     <div class = "input-group-text" style="height:40px">
                     {%if item.complete == False %}            

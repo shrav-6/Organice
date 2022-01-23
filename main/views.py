@@ -8,21 +8,24 @@ def index(response, id):
     ls = ToDoList.objects.get(id=id)
     if response.method == "POST":
         print(response.POST)
+        for item in ls.item_set.all():
+            if response.POST.get("d"+str(item.id)) == "delete":
+                print("to delete:",str(item.id),str(item.text))
+                item.delete()
+                ls.save()
+        
         if response.POST.get("save"):
             for item in ls.item_set.all():
                 if response.POST.get("c"+str(item.id)) == "clicked":
                     item.complete = True
                 else:
                     item.complete = False
+                    
                 item.text = response.POST.get("item-text"+str(item.id))
-                
-                if response.POST.get("delete-item"+str(item.id)):
-                    print(item.text)
                 item.save()
             
         elif response.POST.get("newItem"):
-            txt = response.POST.get("new")
-            
+            txt = response.POST.get("new")            
             if len(txt) > 2:
                 ls.item_set.create(text=txt, complete=False)
             else:
@@ -51,4 +54,3 @@ def create(response):
     else:
         form = CreateNewList()
     return render(response,"main/create.html",{"form":form})
-
