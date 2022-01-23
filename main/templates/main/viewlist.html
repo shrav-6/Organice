@@ -4,12 +4,13 @@
 {%endblock%}
 {%block content%}
     <h1>{{ls.name}}</h1>
+    <br>
     <form method="post" action="#">
         {% csrf_token %}
         {% for item in ls.item_set.all %}
             <div class="input-group mb-3">
                 <span class="input-group-text">
-                <button type="submit" name="d{{item.id}}" value="delete" class="btnimage" style="border: 0; outline:0"><img src="https://cdn4.iconfinder.com/data/icons/controls-add-on-flat/48/Contols_-_Add_On-35-512.png" alt="del" width="20" height="20"></button>
+                <button type="submit" name="d{{item.id}}" value="delete" class="btnimage" style="border: 0; outline:0"><img src="https://cdn4.iconfinder.com/data/icons/controls-add-on-flat/48/Contols_-_Add_On-35-512.png" alt="del" width="19" height="19"></button>
                
             </span>
                 <div class="input-group-prepend">
@@ -27,11 +28,11 @@
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">                
-                <Button type="submit" name = "newItem" value="newItem" class="btn btn-success">AddItem</Button>                
+                <Button type="submit" name = "newItem" value="newItem" class="btn btn-success" style="background-color: #75C9BA !important">AddItem</Button>                
             </div>
                 <input type="text" name="new">
             </div>
-                <Button type="submit" name = "save" value="save" class="btn btn-success">Save</Button>
+                <Button type="submit" name = "save" value="save" class="btn btn-success" style="background-color: #75C9BA !important">Save</Button>
         </div>
     </form>
 {%endblock%}

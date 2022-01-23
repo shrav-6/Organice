@@ -1,0 +1,19 @@
+{% extends "main/base.html" %}
+{%block title%}
+    Create Note
+{%endblock%}
+{%block content%}
+    <h2>Create New Note</h2>
+    <br>
+    <hr>
+    <br>
+    <form method="post" action="/createnote/" class="form-group">
+        {%csrf_token%}
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">                
+                <button type="submit" name = "save" class="btn btn-success" style="background-color: #75C9BA !important">Create new</Button>
+            </div>
+            {{form.notetitle}}
+        </div>
+    </form>    
+{%endblock%}

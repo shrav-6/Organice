@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from . models import ToDoList, Item
-from . forms import CreateNewList
+from . models import ToDoList, Item, Note
+from . forms import CreateNewList, CreateNewNote
 # Create your views here.
 
-def index(response, id):
+def viewlist(response, id):
     ls = ToDoList.objects.get(id=id)
     if response.method == "POST":
         print(response.POST)
@@ -31,26 +31,50 @@ def index(response, id):
             else:
                 print("invalid")
             
-    return render(response, "main/list.html",{"ls":ls})
-
-def index2(response,name):
-    ls = ToDoList.objects.get(name = name)
-    items = list(ls.item_set.all()) #ls.item_set.get(id=id)
-    return HttpResponse("<h1>%s</h1><br></b><p>%s</p>" %(ls.name, str(items[0].text)))
+    return render(response, "main/viewlist.html",{"ls":ls})
 
 def home(response):
     #return HttpResponse("<h1>this is the home page</h1>"
     return render(response,"main/home.html",{"name":"test"})
 
-def create(response):
+def createlist(response):
     if response.method == "POST":
+        print(response.POST)
         form = CreateNewList(response.POST)        
         if form.is_valid():
             n = form.cleaned_data["name"]
             t = ToDoList(name=n)
             t.save()
             
-        return HttpResponseRedirect("/%i" %t.id)
+        return HttpResponseRedirect("/list%i/" %t.id)
     else:
         form = CreateNewList()
-    return render(response,"main/create.html",{"form":form})
+    return render(response,"main/createlist.html",{"form":form})
+
+def createnote(response):
+    if response.method == "POST":
+        print(response.POST)
+        form = CreateNewNote(response.POST)
+        if form.is_valid():
+            print("in form valid")
+            nobj = Note(notetext="", notetitle= form.cleaned_data["notetitle"])
+            nobj.save()                
+            return HttpResponseRedirect("/note%i/" %nobj.id)
+    else:
+        form = CreateNewNote()
+    return render(response,"main/createnote.html",{"form":form})
+
+def viewnote(response, id):
+    nobj = Note.objects.get(id=id)
+    if response.method == "POST":
+        print(response.POST)        
+        if response.POST.get("save"):
+            nobj.notetext = response.POST.get("note-text"+str(nobj.id))
+            nobj.save()
+            
+        if response.POST.get("d"+str(nobj.id)) == "delete":
+            print("delete item",nobj.notetitle)
+            nobj.delete()
+            return HttpResponseRedirect("/home/")
+                         
+    return render(response, "main/viewnote.html",{"nobj":nobj})

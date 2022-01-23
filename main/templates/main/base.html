@@ -4,22 +4,24 @@
         <style type="text/css">
             .sidenav {
                 height:100%;
-                width:160px;
+                width:279px;
                 position: fixed;
                 z-index: 1;
                 top: 0;
                 Left: 0;
-                background-color: #111;
+                background: url("https://www.linkpicture.com/q/Frame-20.png") right repeat-y;
                 overflow-x: hidden;
                 padding-top: 20px;
             }
-
             .sidenav a {
-                padding: 6px 8px 6px 16px;
+                padding: 6px 8px 6px 50px;
+                font-family: "Georgia", Times, serif;
+                font-weight:bold;
                 text-decoration: none;
-                color: #818181;
+                color: #353535;
                 font-size: 25px;
                 display: block;
+                
             }
 
             .sidenav a:hover {
@@ -27,8 +29,10 @@
             }
 
             .main{
-                margin-Left:160px;
-                padding: 0px 10px;
+                margin-Left:279px;
+            }
+            .topimg{
+                top: 0;
             }
         </style>
         <meta charset="utf-8">
@@ -47,17 +51,22 @@
 
         <div class="sidenav">
             <a href="/home/">Home</a>
-            <a href="/create/">Create Lists</a>
-            <a href="/1">View Lists</a>
+            <a href="/createlist/">Create List</a>
+            <a href="/list1/">View List</a>
+            <a href="/createnote/">Create Note</a>
+            <a href="/note2/">View Note</a>
         </div>
 
+        
+
         <div id="content", name="content", class="main">
+            
+            <div class="topimg"><img src="https://www.linkpicture.com/q/Frame-22-3.png" width="1400" height="140" alt="headerimage" /></div>
             <div class="row justify-content-center">
-                <div class="col-8">
-                    <h1 class="mt-2">MY SITE</h1>
+                <div class="col-8">                    
                     <hr class="mt-0 mb-4">
                     {%block content%}
-                    {{name}}
+                    <p></p>
                     {%endblock%}
 
                 </div>

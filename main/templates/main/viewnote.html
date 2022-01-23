@@ -1,0 +1,21 @@
+{% extends "main/base.html" %}
+{%block title%}
+    View Note
+{%endblock%}
+{%block content%}
+    <h1>{{nobj.notetitle}}</h1>
+    <br>
+    <form method="post" action="#">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <span class="input-group-text">
+                <button type="submit" name="d{{nobj.id}}" value="delete" style = "border: none ; outline:none">
+                    <img src = "https://cdn4.iconfinder.com/data/icons/controls-add-on-flat/48/Contols_-_Add_On-35-512.png" height="19" width="19" alt="del" />
+                </button>
+            </span>
+            <input type="text" value="{{nobj.notetext}}" class="form-control" name="note-text{{nobj.id}}">
+        </div>
+            <Button type="submit" name = "save" value="save" class="btn btn-success" style="background-color: #75C9BA !important">Save</Button>
+        </div>
+    </form>
+{%endblock%}
