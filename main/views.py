@@ -8,6 +8,12 @@ def viewlist(response, id):
     ls = ToDoList.objects.get(id=id)
     if response.method == "POST":
         print(response.POST)
+        
+        if response.POST.get("deletelist"+str(ls.id)) == "deletelist":
+            ls.delete()
+            ls = ToDoList.objects.all()
+            return HttpResponseRedirect("/view_all_lists/",{"ls":ls})
+        
         for item in ls.item_set.all():
             if response.POST.get("d"+str(item.id)) == "delete":
                 print("to delete:",str(item.id),str(item.text))
@@ -75,6 +81,15 @@ def viewnote(response, id):
         if response.POST.get("d"+str(nobj.id)) == "delete":
             print("delete item",nobj.notetitle)
             nobj.delete()
-            return HttpResponseRedirect("/home/")
+            return HttpResponseRedirect("/view_all_notes/")
                          
     return render(response, "main/viewnote.html",{"nobj":nobj})
+
+
+def view_all_lists(response):
+    ls = ToDoList.objects.all()
+    return render(response, "main/view_all_lists.html",{"ls":ls})
+
+def view_all_notes(response):
+    notes = Note.objects.all()
+    return render(response, "main/view_all_notes.html",{"notes":notes})

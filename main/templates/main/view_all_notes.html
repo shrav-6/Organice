@@ -1,0 +1,40 @@
+{% extends "main/base.html" %}
+{%block title%}
+    View All Lists
+{%endblock%}
+
+
+{%block content%}
+<style type="text/css">
+
+    .linkdesign:link, .linkdesign:visited {
+        border-radius: 25px;
+        height: 50px;
+        width: 200px;
+        background-color: #353535;
+        color: white;
+        padding: 50px 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        line-height: 0px;
+        margin: 10px 10px 10px;
+    }
+    
+    .linkdesign:hover {
+        background-color: #75c9cb;
+    }
+
+</style>
+    <h2 align="center">User's Notes</h2>
+    <br>
+    <hr style="height:2px; width:850px;" />    
+    <br>
+
+    <div class="notes" align="center">
+        {% for note in notes %}            
+            <a class="linkdesign" href="/note{{note.id}}/">{{note.notetitle}}</a>
+        {% endfor %}
+    </div>
+
+{%endblock%}

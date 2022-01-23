@@ -1,0 +1,57 @@
+{% extends "main/base.html" %}
+{%block title%}
+    View All Lists
+{%endblock%}
+<!--<style type="text/css">
+
+    .lists a {
+        padding: 10px 10px 10px 10px;
+        font-family: "Georgia", Times, serif;
+        font-weight:bold;
+        text-decoration: none;
+        color: #353535;
+        font-size: 25px;
+        display: block;
+        
+    }
+
+    .lists a:hover {
+        color: #f1f1f1;
+    }
+</style>-->
+
+
+
+
+{%block content%}
+    <style>
+        .linkdesign:link, .linkdesign:visited {
+            border-radius: 25px;
+            height: 50px;
+            width: 200px;
+            background-color: #353535;
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            line-height: 0px;
+            margin: 10px 10px 10px;
+        }
+        
+        .linkdesign:hover {
+            background-color: #75c9cb;
+        }
+    </style>
+
+    <h2 align="center">User's Lists</h2>
+    <br>
+    <hr style="height:2px; width:850px;" />    
+    <br>
+
+    <div class="lists" align="center">
+        {% for list in ls %}            
+            <a class="linkdesign" href="/list{{list.id}}/">{{list.name}}</a>
+        {% endfor %}
+    </div>
+{%endblock%}

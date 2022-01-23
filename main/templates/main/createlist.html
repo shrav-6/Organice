@@ -3,17 +3,19 @@
     New List
 {%endblock%}
 {%block content%}
-    <h2>Create New List</h2>
+    <h2 align="center">Create New List</h2>
     <br>
-    <hr>
+        <hr style="height:2px; width:850px;" />    
     <br>
+    
     <form method="post" action="/createlist/" class="form-group">
         {%csrf_token%}
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">                
-                <button type="submit" name = "save" class="btn btn-success" style="background-color: #75C9BA !important">Create new</Button>
+            <div style="padding-left: 320px">
+                <div class="input-group mb-3" > 
+                    {{form.name}}
+                </div>
+                <br>
+                <button type="submit" name = "save" class="btn btn-success" style="background-color: #75C9BA !important; margin-left:45px">Create List</Button>
             </div>
-            {{form.name}}
-        </div>
     </form>    
 {%endblock%}
