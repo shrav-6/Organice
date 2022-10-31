@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,7 +10,7 @@
                 z-index: 1;
                 top: 0;
                 Left: 0;
-                background: url("https://www.linkpicture.com/q/Frame-20.png") right repeat-y;
+                background: url("{% static 'main/images/bg.jpeg' %}") right repeat-y;
                 overflow-x: hidden;
                 padding-top: 20px;
             }
@@ -61,7 +62,7 @@
 
         <div id="content", name="content", class="main">
             
-            <div class="topimg"><img src="https://www.linkpicture.com/q/Frame-22-3.png" width="1400" height="140" alt="headerimage" /></div>
+            <div class="topimg"><img src="{% static 'main/images/topimg.png' %}" width="1400" height="140" alt="headerimage" /></div>
             <div class="row justify-content-center">
                 <div class="col-8">                    
                     <hr class="mt-0 mb-4">
